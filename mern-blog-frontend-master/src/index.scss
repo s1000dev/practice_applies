@@ -1,0 +1,33 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Roboto';
+  background-color: #F5F5F5 !important;
+}
+
+@media print {
+	.Header_root__ZyowK,
+	.noprint{
+		display: none;
+		visibility: hidden;
+	}
+	.posts {
+		visibility: visible;
+	}
+	.Post_root__puaGs{
+		break-after: page;
+	}
+	.editButtons{
+		display: none;
+		visibility: hidden;
+	}
+}
+
+.posts{
+}
+
+.noauth,
+.noapplies{
+	font-size: 18px;
+	text-align: center;
+	margin-top: 20px;
+}
