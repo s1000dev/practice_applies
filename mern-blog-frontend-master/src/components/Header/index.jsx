@@ -28,7 +28,17 @@ export const Header = () => {
 		}
 	};
 
-	const [value, setValue] = React.useState(0);
+	const [tabIndex, setTabIndex] = React.useState(0);
+	const [statusValue, setStatusValue] = React.useState(4);
+	const currentType = ['all', 'tech', 'market'][tabIndex];
+	const currentStatus = statusValue;
+
+	const fetchData = React.useCallback(() => {
+		dispatch(fetchPosts({
+			type: currentType,
+			status: currentStatus
+		}));
+	}, [currentType, currentStatus, dispatch]);
 
 	function logoClick() {
 		let tags = document.querySelectorAll('.tags a');
@@ -36,44 +46,45 @@ export const Header = () => {
 			tag.style.outline = 'none';
 		}
 		navigate("/");
-		setValue(0);
-		dispatch(fetchPosts('all'));
+		fetchData();
 	}
 
 	return (
 		<div className={styles.root}>
 			<Container maxWidth="lg">
 				<div className={styles.inner}>
-					<a className={styles.logo} onClick={logoClick}>OpenPortal</a>
+					<a className={styles.logo} onClick={logoClick}>LITE<span>B</span>OX</a>
 					<div className={styles.buttons}>
 						{((userData?.role == 1 || userData?.role == 2) && posts.items?.length >= 1) && (
-							<Button onClick={window.print} type="submit" variant="contained">
+							<Button className={styles.btn} onClick={window.print} type="submit" variant="contained">
 								Распечатать заявки
 							</Button>
 						)}
 						{userData?.role == 2 && (
 							<Link to="/access">
-								<Button variant="contained">Изменить доступ пользователей</Button>
+								<Button className={styles.btn} variant="contained">Изменить доступ пользователей</Button>
 							</Link>
 						)}
 						{isAuth ? (
 							<>
 								{userData?.role == 0 && (
-									<Link to="/add-post">
-										<Button variant="contained">Опубликовать заявку</Button>
-									</Link>
+									<><Link to="/add-post">
+										<Button className={styles.btn} variant="contained">Отправить заявку</Button>
+									</Link><Link to="/add-post-apply">
+											<Button className={styles.btn} variant="contained">Обратиться за услугами</Button>
+										</Link></>
 								)}
-								<Button onClick={onClickLogout} variant="contained" color="error">
+								<Button className={styles.exit} onClick={onClickLogout} variant="contained" color="error">
 									Выйти
 								</Button>
 							</>
 						) : (
 							<>
 								<Link to="/login">
-									<Button variant="outlined">Войти</Button>
+									<Button className={styles.btn} variant="outlined">Войти</Button>
 								</Link>
 								<Link to="/register">
-									<Button variant="contained">Зарегистрироваться</Button>
+									<Button className={styles.btn} variant="contained">Зарегистрироваться</Button>
 								</Link>
 							</>
 						)}

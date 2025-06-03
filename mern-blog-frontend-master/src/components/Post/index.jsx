@@ -11,6 +11,7 @@ import styles from './Post.module.scss';
 import { UserInfo } from '../UserInfo';
 import { PostSkeleton } from './Skeleton';
 import { fetchRemovePost } from '../../redux/slices/posts';
+import { fetchRemoveApply } from '../../redux/slices/posts';
 
 export const Post = ({
 	id,
@@ -27,6 +28,7 @@ export const Post = ({
 	worker,
 	num,
 	text,
+	phone
 }) => {
 	const dispatch = useDispatch();
 	const userData = useSelector(state => state.auth.data);
@@ -36,9 +38,14 @@ export const Post = ({
 	}
 
 
-	const onClickRemove = () => {
+	const onClickRemovePost = () => {
 		if (window.confirm('Вы действительно хотите удалить заявку?')) {
 			dispatch(fetchRemovePost(id));
+		}
+	};
+	const onClickRemoveApply = () => {
+		if (window.confirm('Вы действительно хотите удалить заявку?')) {
+			dispatch(fetchRemoveApply(id));
 		}
 	};
 
@@ -64,9 +71,48 @@ export const Post = ({
 
 	return (
 		<div className={clsx(styles.root, { [styles.rootFull]: isFullPost })}>
-			<div className={styles.wrapper}>
+			{(phone) ? (<div className={styles.wrapper}>
 				<Grid className={styles.top} container rowSpacing={1}>
-					<div>Заявка № {num}</div>
+					<div className={styles.top_first}>Заявка № {num} <span style={{
+						backgroundColor: '#198304',
+						color: 'white',
+						borderRadius: '5px',
+						padding: "7px",
+					}}>Целевая</span></div>
+					<Grid className={styles.btns}>
+						<div className={styles.editButtons}>
+							{editPost && (
+								<Link to={`/postsapply/${id}/edit`}>
+									<IconButton color="primary">
+										<EditIcon />
+									</IconButton>
+								</Link>
+							)}
+							{userData?.role == 2 && (
+								<IconButton onClick={onClickRemoveApply} color="secondary">
+									<DeleteIcon />
+								</IconButton>
+							)}
+						</div>
+						{createStatus()}
+					</Grid>
+				</Grid>
+				<UserInfo {...user} additionalText={createdAt} />
+				<div className={styles.indention}>
+					<h2 className={clsx(styles.title)}>
+						{title}
+					</h2>
+				</div>
+				<p><strong>Номер телефона:</strong> {phone}.</p>
+				<div className={styles.text}><p><strong>Текст заявки:</strong> {String(text)}.</p></div>
+			</div>) : (<div className={styles.wrapper}>
+				<Grid className={styles.top} container rowSpacing={1}>
+					<div className={styles.top_second}>Заявка № {num} <span style={{
+						backgroundColor: '#1976d2',
+						color: 'white',
+						borderRadius: '5px',
+						padding: "7px",
+					}}>Техническая</span></div>
 					<Grid className={styles.btns}>
 						<div className={styles.editButtons}>
 							{editPost && (
@@ -77,7 +123,7 @@ export const Post = ({
 								</Link>
 							)}
 							{userData?.role == 2 && (
-								<IconButton onClick={onClickRemove} color="secondary">
+								<IconButton onClick={onClickRemovePost} color="secondary">
 									<DeleteIcon />
 								</IconButton>
 							)}
@@ -102,7 +148,7 @@ export const Post = ({
 					)}
 				</div>
 				<div className={styles.text}><p><strong>Текст заявки:</strong> {String(text)}.</p></div>
-			</div>
+			</div>)}
 
 		</div >
 	);

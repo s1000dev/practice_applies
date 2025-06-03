@@ -1,72 +1,72 @@
-$blue: #4361ee;
+$blue: #112c28;
 
-p{
+p {
 	margin: 0;
 	padding: 0;
 }
 
-.indention{
+.indention {
 	margin-top: 14px;
 }
 
 .root {
-  height: auto;
-  background-color: #fff;
-  border: 1px solid #dedede;
-  overflow: none;
-  overflow-y: auto;
-  border-radius: 6px;
-  margin-bottom: 15px;
-  position: relative;
-  &::-webkit-scrollbar {
-    visibility: hidden;
-    margin-top: 30px;
-    background: grey;
-    width: 5px;
-  }
-  &:hover::-webkit-scrollbar {
-    visibility: visible;
-  }
-  &:hover::-webkit-scrollbar-thumb {
-    background: $blue;
-    border-radius: 30px;
-  }
+	height: auto;
+	background-color: #fff;
+	border: 1px solid #dedede;
+	overflow: none;
+	overflow-y: auto;
+	border-radius: 6px;
+	margin-bottom: 15px;
+	position: relative;
+	&::-webkit-scrollbar {
+		visibility: hidden;
+		margin-top: 30px;
+		background: grey;
+		width: 5px;
+	}
+	&:hover::-webkit-scrollbar {
+		visibility: visible;
+	}
+	&:hover::-webkit-scrollbar-thumb {
+		background: $blue;
+		border-radius: 30px;
+	}
 
-  &:hover {
-    border: 1px solid $blue;
-    box-shadow: 0 0 0 1px $blue;
+	&:hover {
+		border: 1px solid $blue;
+		box-shadow: 0 0 0 1px $blue;
 
-    .editButtons {
-      opacity: 1;
-    }
-  }
+		.editButtons {
+			opacity: 1;
+		}
+	}
 
-  position: relative;
-  &:before {
-	 position: absolute;
-	 content: "";
-	 display: block;
-	 width: 100%;
-	 height: 1px;
-	 background-color: #dedede;
-	 top: 60px;
-  }
+	position: relative;
+	&:before {
+		position: absolute;
+		content: "";
+		display: block;
+		width: 100%;
+		height: 1px;
+		background-color: #dedede;
+		top: 60px;
+	}
 
-  &Full {
-    width: inherit;
-    max-height: none;
-    &:hover {
-      background-color: #fff;
-      border: 1px solid #dedede;
-      box-shadow: none;
-    }
-    &::-webkit-scrollbar{
-      display: none;
-    }
-  }
+	&Full {
+		width: inherit;
+		max-height: none;
+		&:hover {
+			background-color: #fff;
+			border: 1px solid #dedede;
+			box-shadow: none;
+		}
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
 }
 
-.top{
+.top {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -74,19 +74,66 @@ p{
 	padding-bottom: 10px;
 }
 
-.nophoto{
+@media (max-width: 600px) {
+	.top {
+		flex-direction: column !important;
+	}
+	.top_first {
+		display: flex !important;
+		flex-direction: column !important;
+		span {
+			display: inline-block !important;
+			margin-top: 5px !important;
+			max-width: 90px;
+		}
+	}
+	.top_second {
+		display: flex !important;
+		flex-direction: column !important;
+		span {
+			display: inline-block !important;
+			margin-top: 5px !important;
+			max-width: 125px;
+		}
+	}
+	.statusRed {
+		margin-top: 5px !important;
+	}
+	.statusGreen {
+		margin-top: 5px !important;
+	}
+	.statusBlack {
+		margin-top: 5px !important;
+	}
+	.statusYellow {
+		margin-top: 5px !important;
+	}
+	.root {
+		&:before {
+			top: 145px !important;
+		}
+	}
+}
+
+.typee {
+	border-radius: 5px !important;
+	font-size: 40px !important;
+	background-color: red !important;
+}
+
+.nophoto {
 	padding: 0;
 	margin: 0;
 	display: inline-block;
 }
 
-.yesphoto{
+.yesphoto {
 	padding: 0;
 	margin: 0;
 	color: #000000;
 }
 
-.statusRed{
+.statusRed {
 	padding: 0;
 	margin: 0;
 	color: white;
@@ -95,7 +142,7 @@ p{
 	padding: 5px 10px;
 	border-radius: 10px;
 }
-.statusYellow{
+.statusYellow {
 	padding: 0;
 	margin: 0;
 	color: white;
@@ -104,7 +151,7 @@ p{
 	padding: 5px 10px;
 	border-radius: 10px;
 }
-.statusGreen{
+.statusGreen {
 	padding: 0;
 	margin: 0;
 	color: white;
@@ -113,7 +160,7 @@ p{
 	padding: 5px 10px;
 	border-radius: 10px;
 }
-.statusBlack{
+.statusBlack {
 	padding: 0;
 	margin: 0;
 	color: white;
@@ -124,121 +171,128 @@ p{
 }
 
 .image {
-  width: 100%;
-  height: 270px;
-  object-fit: contain;
+	width: 100%;
+	height: 270px;
+	object-fit: contain;
 
-  &Full {
-    min-height: 300px;
-    max-height: 100%;
-  }
+	&Full {
+		min-height: 300px;
+		max-height: 100%;
+	}
 }
 
 .wrapper {
-  padding: 20px;
-  max-width: 100%;
-  white-space: pre-wrap;
-  font-size: 18px;
+	padding: 20px;
+	max-width: 100%;
+	white-space: pre-wrap;
+	font-size: 18px;
 }
 
 .content {
-  margin: 30px 0 50px;
+	margin: 30px 0 50px;
 
-  p {
-    font-size: 22px;
-    line-height: 36px;
-  }
+	p {
+		font-size: 22px;
+		line-height: 36px;
+	}
 }
 
 .title {
-  font-size: 26px;
-  margin: 0;
+	font-size: 26px;
+	margin: 0;
 
-  a {
-    text-decoration: none;
-    color: #000;
+	a {
+		text-decoration: none;
+		color: #000;
 
-    &:hover {
-      color: $blue;
-    }
-  }
+		&:hover {
+			color: $blue;
+		}
+	}
 
-  &Full {
-    font-size: 42px;
-    font-weight: 900;
-  }
+	&Full {
+		font-size: 42px;
+		font-weight: 900;
+	}
 }
 
-.text{
+.text {
 	width: 100%;
 }
 
 .postDetails {
-  list-style: none;
-  padding: 0;
-  margin: 20px 0 0 0;
+	list-style: none;
+	padding: 0;
+	margin: 20px 0 0 0;
 
-  li {
-    display: inline-flex;
-    align-items: center;
-    font-size: 14px;
-    margin-right: 20px;
-    opacity: 0.5;
+	li {
+		display: inline-flex;
+		align-items: center;
+		font-size: 14px;
+		margin-right: 20px;
+		opacity: 0.5;
 
-    svg {
-      font-size: 18px;
-      margin-right: 5px;
-    }
-  }
+		svg {
+			font-size: 18px;
+			margin-right: 5px;
+		}
+	}
+}
+
+.type {
+	padding: 2px;
+	border-radius: 5px;
+	background-color: black;
+	color: white !important;
 }
 
 .skeleton {
-  background-color: #fff;
-  border: 1px solid #dedede;
-  border-radius: 6px;
-  overflow: hidden;
-  margin-bottom: 15px;
+	background-color: #fff;
+	border: 1px solid #dedede;
+	border-radius: 6px;
+	overflow: hidden;
+	margin-bottom: 15px;
 
-  &Content {
-    padding: 20px;
-  }
+	&Content {
+		padding: 20px;
+	}
 
-  &Info {
-    margin-left: 50px;
-  }
+	&Info {
+		margin-left: 50px;
+	}
 }
 
 .skeletonUser {
-  display: flex;
+	display: flex;
 
-  &Details {
-    display: flex;
-    flex-direction: column;
-	justify-content: space-between;
-  }
+	&Details {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+	}
 }
 
 .skeletonTags {
-  display: flex;
+	display: flex;
 
-  span {
-    margin-right: 15px;
-  }
+	span {
+		margin-right: 15px;
+	}
 }
 
-.work{
+.work {
 	font-size: 24px;
 }
 
 .editButtons {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  opacity: 0;
-  transition: 0.3s opacity;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	opacity: 0;
+	transition: 0.3s opacity;
 }
 
-.btns{
+.btns {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
